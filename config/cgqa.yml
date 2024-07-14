@@ -1,0 +1,103 @@
+config_name: 'cgqa' 
+
+DATASET:
+  dset_name: 'cgqa'
+  dset_split: '1'
+  name: 'cgqa'
+  root_dir: 'path/to/data/cgqa'
+  splitname: 'compositional-split-natural'
+  split_files_loc: '../Data_files/CGQA'
+
+DISTRIBUTED:
+  world_size: 1
+
+MODEL:
+  attn_normalized: True
+  attr_cosine_cls_temp: 0.05 
+  attr_emb_dim: 300
+  aux_loss_reweight: False
+  classifier: 'cosine'
+  cosine_cls_temp: 0.05 
+  cross_att_dim: 128
+  drop_input: 0.0
+  dropout_cross_attn: 0.0
+  emb_dim: 300
+  emb_loss_main: 0.2 
+  extra_pair_loss_ratio: 0.2 
+  extra_attr_loss_ratio: 0.05 
+  extra_obj_loss_ratio: 0.05 
+  extra_neighbor_weight: 0.05 
+  image_pair_multihead_attn: False
+  image_pair_multihead_attn_dim: 256
+  image_pair_multihead_num_heads: 2
+  img_drop_last: 0.0
+  img_emb_dim: 2048
+  img_emb_drop: 0.35
+  img_emb_method: 'conv_interm'
+  img_final_bias: True
+  lambda_attn: 10.0
+  load_checkpoint: False
+  low_dim_cross_att: False
+  name: 'oaclipv3'
+  neigh_num: 7
+  obj_cosine_cls_temp: 0.05
+  obj_emb_dim: 300
+  optim_weights: ''
+  seen_loss_ratio: 0.2 
+  smoothing: 0.5
+  unseen_loss_ratio: 0.2 
+  use_attr_loss: True
+  use_composed_pair_loss: True
+  use_emb_pair_loss: True
+  use_extra_pair_loss: True 
+  use_extra_attr_loss: True
+  use_extra_obj_loss: True
+  use_fg_estimator: False
+  use_obj_loss: True
+  w_loss_attr: 0.05 
+  w_loss_main: 1.0
+  w_loss_obj: 0.05 
+  weights: ''
+  wordemb_attribute_code: 'simple'
+  wordemb_attribute_code_fc: 'simple'
+  wordemb_compose: linear
+  wordemb_compose_dropout: 0.05
+  wordemb_compose_final: 'simple'
+  wordemb_final_bias: True
+  wordemb_object_code: 'simple'
+  wordembs: 'clip_bert'
+
+TRAIN:
+  batch_size: 64
+  checkpoint_dir: 'checkpoints'
+  clip_type: 'res18' 
+  comb_features: False
+  decay_factor: 0.01
+  decay_patience: 2
+  decay_strategy: 'plateau' 
+  disp_interval: 263 
+  eval_every_epoch: 1 #4
+  final_max_epoch: 120
+  finetune_backbone: False
+  log_dir: 'tensorboards'
+  lr: 1e-4 
+  lr_decay_milestones: [20, 130]
+  lr_encoder: 1e-5  
+  lr_word_embedding: 2.5e-5 
+  max_epoch: 120
+  n_sample_hard_negative: 25
+  num_workers: 4 
+  sample_hard_negative: True
+  sample_negative_pairs: -1 
+  sample_similar_object: False
+  save_every_epoch: 1
+  seed: 124
+  start_epoch: 1
+  start_epoch_validate: 0 #15 
+  test_batch_size: 256
+  use_precomputed_features: False
+  wd: 5e-5 
+  wd_encoder: 5e-5
+
+EVAL:
+  topk: 1

@@ -1,0 +1,105 @@
+config_name: 'vaw' 
+
+DATASET:
+  dset_name: 'vaw'
+  dset_split: '1'
+  name: 'vaw'
+  root_dir: 'path/to/data/vaw_splits'
+  splitname: 'compositional-split-natural'
+  split_files_loc: '../Data_files/VAW'
+
+DISTRIBUTED:
+  world_size: 1
+
+MODEL:
+    attn_normalized: true
+    attr_cosine_cls_temp: 0.05
+    attr_emb_dim: 300
+    aux_loss_reweight: false
+    classifier: cosine
+    cosine_cls_temp: 0.05
+    cross_att_dim: 128
+    drop_input: 0.0
+    dropout_cross_attn: 0.0
+    emb_dim: 300
+    emb_loss_main: 0.1
+    eval_topk: 1
+    extra_attr_loss_ratio: 0.05
+    extra_neighbor_weight: 0.05
+    extra_obj_loss_ratio: 0.05
+    extra_pair_loss_ratio: 0.2
+    image_pair_multihead_attn: false
+    image_pair_multihead_attn_dim: 256
+    image_pair_multihead_num_heads: 2
+    img_drop_last: 0.0
+    img_emb_dim: 2048
+    img_emb_drop: 0.3
+    img_emb_method: conv_interm
+    img_final_bias: true
+    lambda_attn: 10.0
+    load_checkpoint: false
+    low_dim_cross_att: false
+    name: oaclipv3
+    neigh_num: 10
+    obj_cosine_cls_temp: 0.05
+    obj_emb_dim: 300
+    optim_weights: ''
+    seen_loss_ratio: 0.1
+    smoothing: 0.8
+    unseen_loss_ratio: 0.1
+    use_attr_loss: true
+    use_composed_pair_loss: true
+    use_emb_pair_loss: true
+    use_extra_attr_loss: true
+    use_extra_obj_loss: true
+    use_extra_pair_loss: true
+    use_fg_estimator: false
+    use_obj_loss: true
+    w_loss_attr: 0.05
+    w_loss_main: 1.0
+    w_loss_obj: 0.05
+    weights: ''
+    wordemb_attribute_code: simple
+    wordemb_attribute_code_fc: simple
+    wordemb_compose: linear
+    wordemb_compose_dropout: 0.05
+    wordemb_compose_final: simple
+    wordemb_final_bias: true
+    wordemb_object_code: simple
+    wordembs: clip_bert
+    neigh_num: 5
+TRAIN:
+    batch_size: 64
+    checkpoint_dir: checkpoints
+    clip_type: res18
+    comb_features: false
+    decay_factor: 0.1
+    decay_patience: 2
+    decay_strategy: milestone
+    disp_interval: 635
+    eval_every_epoch: 1 #4
+    final_max_epoch: 150
+    finetune_backbone: false
+    log_dir: tensorboards
+    loss: bce
+    lr: 0.0001
+    lr_decay_milestones: [30,40]
+    lr_encoder: 1.0e-05
+    lr_word_embedding: 2.5e-06
+    max_epoch: 150
+    n_sample_hard_negative: 25
+    num_workers: 4
+    sample_hard_negative: true
+    sample_negative_pairs: -1
+    sample_similar_object: false
+    save_every_epoch: 1
+    seed: 124
+    start_epoch: 1
+    start_epoch_validate: 0 #15
+    test_batch_size: 256
+    use_precomputed_features: false
+    wd: 5.0e-05
+    wd_encoder: 5.0e-05
+
+EVAL:
+  topk: 3
